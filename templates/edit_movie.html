@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Edit Movie {{ movie.title }}</h2>
+
+<form method="POST">
+  <div>
+    <label for="title">Title</label>
+    <input id="title" name="title" value="{{movie.title}}" required>
+  </div>
+  <div>
+    <label for="release_year">Release Year:</label>
+    <input id="release_year" name="release_year" type="number" value="{{ movie.release_year }}" required>
+  </div>
+  <div>
+    <label for="genre">Genre:</label>
+    <input id="genre" name="genre" value="{{ movie.genre }}" required>
+  </div>
+  <div>
+    <label for="director">Director:</label>
+    <input id="director" name="director" value="{{ movie.director }}" required>
+  </div>
+  <div>
+    <label for="rating">Rating:</label>
+    <input id="rating" name="rating" type="number" step="0.1" value="{{ movie.rating }}" required>
+  </div>
+
+  <button type="submit">Save Changes</button>
+  <a href="{{ url_for('user_movies', user_id=user_id) }}">Cancel</a>
+</form>
+{% endblock %}
