@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, url_for, redirect
+from flask import Flask, request, render_template, url_for, redirect
 from data_manager import SQLiteDataManager
 
 app = Flask(__name__)
@@ -59,6 +59,12 @@ def edit_movie(user_id, movie_id):
 def delete_movie(user_id, movie_id):
     data_manager.delete_movie(user_id, movie_id)
     return redirect(url_for('user_movies', user_id=user_id))
+
+
+@app.route('/users/<int:user_id>/delete', methods=['POST'])
+def delete_user(user_id):
+    data_manager.delete_user(user_id)
+    return redirect(url_for('users'))
 
 
 if __name__ == "__main__":
